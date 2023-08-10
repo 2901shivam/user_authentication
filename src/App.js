@@ -1,4 +1,4 @@
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import {  Route,Routes} from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
@@ -8,17 +8,14 @@ import HomePage from './pages/HomePage';
 function App() {
   return (
     <Layout>
-      <BrowserRouter>
-        <Route path='/' exact>
-          <HomePage />
-        </Route>
-        <Route path='/auth'>
-          <AuthPage />
-        </Route>
-        <Route path='/profile'>
-          <UserProfile />
-        </Route>
-      </BrowserRouter>
+      <Routes>
+        <Route path='/' exact element={<HomePage/>}/>
+         
+        <Route path='/auth' element={<AuthPage/>}/>
+         
+        <Route path='/profile' element={<UserProfile/>}/>
+          
+      </Routes>
     </Layout>
   );
 }
