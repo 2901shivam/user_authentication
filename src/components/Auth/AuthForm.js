@@ -1,12 +1,14 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 import classes from './AuthForm.module.css';
 import { json } from 'react-router-dom';
+import AuthenticationContex from '../Store/AuthenticationContex';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const emailref=useRef();
   const passwordref=useRef();
+  const crtctx=useContext(AuthenticationContex);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -34,7 +36,8 @@ const AuthForm = () => {
         if(response.ok){
 
           return response.json().then(data=>{
-            console.log(data);
+            //console.log(data);
+            crtctx.login(data.idToken);
           });
         }
         else{
