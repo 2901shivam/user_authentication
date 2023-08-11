@@ -6,9 +6,17 @@ import  { myAuthentication } from '../Store/AuthenticationContex';
 
 
 const MainNavigation = () => {
-  const crtctx=useContext(myAuthentication)
+  // const crtctx=useContext(myAuthentication)
 
-  const auth=crtctx.userIsLogedin;
+  // const auth=crtctx.userIsLogedin;
+
+  const{userIsLogedin,logoutHandler}=useContext(myAuthentication);
+
+  const logoutHandle=()=>{
+   // console.log('jj')
+    logoutHandler();
+
+  }
   return (
     <header className={classes.header}>
       <Link to='/'>
@@ -17,13 +25,13 @@ const MainNavigation = () => {
       <nav>
         <ul>
           <li>
-          {!auth&& <Link to='/auth'>Login</Link>}
+          {!userIsLogedin&& <Link to='/auth'>Login</Link>}
           </li>
           <li>
-            {auth&&<Link to='/profile'>Profile</Link>}
+            {userIsLogedin&&<Link to='/profile'>Profile</Link>}
           </li>
           <li>
-           {auth&& <button>Logout</button>}
+           {userIsLogedin&& <button onClick={logoutHandle}>Logout</button>}
           </li>
         </ul>
       </nav>
