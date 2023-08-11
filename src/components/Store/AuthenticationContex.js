@@ -12,15 +12,18 @@ const AuthenticationContex = (props) => {
     userIsLogedin = true;
   }
 
+  const logoutHandler = () => {
+    setToken(null);
+    localStorage.removeItem('token');
+  };
+
   const loginHandler = (token) => {
     setToken(token);
     localStorage.setItem('token',token);
+    setTimeout(logoutHandler,50000);
   };
 
-  const logoutHandler = () => {
-    setToken(null);
-    localStorage.remove('token');
-  };
+  
 
   return (
     <myAuthentication.Provider
