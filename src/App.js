@@ -4,8 +4,11 @@ import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
+import { useContext } from 'react';
+import { myAuthentication } from './components/Store/AuthenticationContex';
 
 function App() {
+  const{userIsLogedin}=useContext(myAuthentication);
   return (
     <Layout>
       <Routes>
@@ -13,7 +16,7 @@ function App() {
          
         <Route path='/auth' element={<AuthPage/>}/>
          
-        <Route path='/profile' element={<UserProfile/>}/>
+        {userIsLogedin&&<Route path='/profile' element={<UserProfile/>}/>}
           
       </Routes>
     </Layout>

@@ -3,7 +3,8 @@ import React, { createContext, useState } from "react";
 const myAuthentication = createContext();
 
 const AuthenticationContex = (props) => {
-  const [token, setToken] = useState(null);
+  const intialToken=localStorage.getItem('token');
+  const [token, setToken] = useState(intialToken);
 
   let userIsLogedin = false;
 
@@ -13,10 +14,12 @@ const AuthenticationContex = (props) => {
 
   const loginHandler = (token) => {
     setToken(token);
+    localStorage.setItem('token',token);
   };
 
   const logoutHandler = () => {
     setToken(null);
+    localStorage.remove('token');
   };
 
   return (
